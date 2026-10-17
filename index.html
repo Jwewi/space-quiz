@@ -450,16 +450,16 @@
 
   <script>
     const questions = [
-      { question: "Which planet is known as the Red Planet?", answers: ["Venus", "Mars", "Jupiter", "Mercury"], correct: 1 },
-      { question: "What is the name of our galaxy?", answers: ["Andromeda", "Whirlpool", "Milky Way", "Sombrero"], correct: 2 },
-      { question: "Which planet has the most prominent ring system?", answers: ["Saturn", "Neptune", "Uranus", "Earth"], correct: 0 },
-      { question: "What force keeps planets in orbit around the Sun?", answers: ["Magnetism", "Friction", "Gravity", "Pressure"], correct: 2 },
-      { question: "Which was the first human-made object to reach interstellar space?", answers: ["Voyager 1", "Apollo 11", "Hubble", "New Horizons"], correct: 0 },
-      { question: "What is a light-year a measurement of?", answers: ["Time", "Brightness", "Distance", "Speed"], correct: 2 },
-      { question: "Which moon is the largest in our solar system?", answers: ["Titan", "Ganymede", "Europa", "Triton"], correct: 1 },
-      { question: "What is the closest star to Earth after the Sun?", answers: ["Sirius", "Proxima Centauri", "Betelgeuse", "Polaris"], correct: 1 },
-      { question: "What type of celestial object is the Sun?", answers: ["A planet", "A comet", "A star", "A nebula"], correct: 2 },
-      { question: "Which telescope launched in 2021 observes the universe in infrared?", answers: ["Kepler", "Spitzer", "James Webb", "Chandra"], correct: 2 }
+      { question: "Which planet is known as the Red Planet?", answers: ["Venus", "Mars", "Jupiter", "Mercury"], correct: 1, explanation: "Iron minerals in Mars’s soil oxidize, or rust, giving its surface a reddish color." },
+      { question: "What is the name of our galaxy?", answers: ["Andromeda", "Whirlpool", "Milky Way", "Sombrero"], correct: 2, explanation: "The Milky Way is a barred spiral galaxy containing our Sun and hundreds of billions of other stars." },
+      { question: "Which planet has the most prominent ring system?", answers: ["Saturn", "Neptune", "Uranus", "Earth"], correct: 0, explanation: "Saturn’s bright rings are made mostly of countless pieces of water ice and rock." },
+      { question: "What force keeps planets in orbit around the Sun?", answers: ["Magnetism", "Friction", "Gravity", "Pressure"], correct: 2, explanation: "The Sun’s gravity pulls planets inward while their forward motion carries them around it." },
+      { question: "Which was the first human-made object to reach interstellar space?", answers: ["Voyager 1", "Apollo 11", "Hubble", "New Horizons"], correct: 0, explanation: "Voyager 1 crossed the heliopause in 2012 and entered the space between stars." },
+      { question: "What is a light-year a measurement of?", answers: ["Time", "Brightness", "Distance", "Speed"], correct: 2, explanation: "A light-year is the distance light travels in one year: about 9.46 trillion kilometers." },
+      { question: "Which moon is the largest in our solar system?", answers: ["Titan", "Ganymede", "Europa", "Triton"], correct: 1, explanation: "Ganymede is larger than Mercury and is the only moon known to have its own magnetic field." },
+      { question: "What is the closest star to Earth after the Sun?", answers: ["Sirius", "Proxima Centauri", "Betelgeuse", "Polaris"], correct: 1, explanation: "Proxima Centauri is about 4.24 light-years away and is part of the Alpha Centauri system." },
+      { question: "What type of celestial object is the Sun?", answers: ["A planet", "A comet", "A star", "A nebula"], correct: 2, explanation: "The Sun is a star: a huge ball of hot plasma powered by nuclear fusion in its core." },
+      { question: "Which telescope launched in 2021 observes the universe in infrared?", answers: ["Kepler", "Spitzer", "James Webb", "Chandra"], correct: 2, explanation: "The James Webb Space Telescope uses infrared light to study distant galaxies, stars, and planets." }
     ];
 
     const quizView = document.querySelector("#quiz-view");
@@ -513,17 +513,18 @@
       answered = true;
       const item = questions[current];
       const allAnswers = [...answers.children];
+      const explanation = item.explanation ? ` Explanation: ${item.explanation}` : "";
       allAnswers.forEach((answer) => { answer.disabled = true; });
 
       if (index === item.correct) {
         score += 1;
         button.classList.add("correct");
-        feedback.textContent = "Correct — your navigation is impeccable.";
+        feedback.textContent = `Correct — your navigation is impeccable.${explanation}`;
         feedback.className = "feedback good";
       } else {
         button.classList.add("wrong");
         allAnswers[item.correct].classList.add("correct");
-        feedback.textContent = `Not quite — the answer was ${item.answers[item.correct]}.`;
+        feedback.textContent = `Not quite — the answer was ${item.answers[item.correct]}.${explanation}`;
         feedback.className = "feedback bad";
       }
 
